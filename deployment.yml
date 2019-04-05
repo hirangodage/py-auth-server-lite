@@ -1,0 +1,19 @@
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: auth-server
+ spec:
+    selector:
+    matchLabels:
+      name: web
+   replicas: 2
+   template:
+     metadata:
+       labels:
+         app: web
+     spec:
+       containers:
+         - name: auth-server
+           image: py-auth-server-lite
+           ports:
+             - containerPort: 8088

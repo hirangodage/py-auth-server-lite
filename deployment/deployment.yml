@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server-1
+  labels:
+    app: auth-server-1
+  annotations:
+    monitoring: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-server-1
+  template:
+    metadata:
+      labels:
+        app: auth-server-1
+    spec:
+      containers:
+      - image: py-auth-server-lite:v1
+        name: auth-server-1
+        ports:
+        - containerPort: 8088
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+          requests: 
+            memory: "1Gi"
+            cpu: "500m"
